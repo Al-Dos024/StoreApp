@@ -36,20 +36,23 @@ class HomePage extends StatelessWidget {
           future: AllProductsService().getAllProducts(),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
-              // the data is not working :(
+              List<ProductModel> products = snapshot.data!;
               return GridView.builder(
+                itemCount: products.length,
                 clipBehavior: Clip.none,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1.5,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 100),
                 itemBuilder: (context, index) {
-                  return CustomCard();
+                  return CustomCard(
+                    product: products[index],
+                  );
                 },
               );
             } else {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
