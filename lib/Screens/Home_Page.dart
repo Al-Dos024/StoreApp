@@ -35,23 +35,24 @@ class HomePage extends StatelessWidget {
         child: FutureBuilder<List<ProductModel>>(
           future: AllProductsService().getAllProducts(),
           builder: ((context, snapshot) {
-            //  if (snapshot.hasData) { the data is not working :(
-            return GridView.builder(
-              clipBehavior: Clip.none,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.5,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 100),
-              itemBuilder: (context, index) {
-                return CustomCard();
-              },
-            );
-            // } else {
-            //   return Center(
-            //     child: CircularProgressIndicator(),
-            //   );
-            // }
+            if (snapshot.hasData) {
+              // the data is not working :(
+              return GridView.builder(
+                clipBehavior: Clip.none,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.5,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 100),
+                itemBuilder: (context, index) {
+                  return CustomCard();
+                },
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
           }),
         ),
       ),
