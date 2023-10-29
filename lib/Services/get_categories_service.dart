@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+// ignore_for_file: missing_required_param
 import 'package:store_app/Helper/Api.dart';
 
 class AllCategoriesService {
